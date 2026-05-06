@@ -579,7 +579,9 @@ DESKTOP
 <div class="music" onclick="toggleMusic()">
   🔊
 </div>
-
+<audio id="bgm" loop preload="auto">
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
 <script>
 
 /* =========================
@@ -587,6 +589,33 @@ OPEN INVITE
 ========================= */
 
 function openInvite(){
+  function openInvite(){
+
+  // hide intro
+  document
+    .getElementById("intro")
+    .classList.add("hide");
+
+  // audio safe play
+  let audio = document.getElementById("bgm");
+
+  if(audio){
+
+    audio.volume = 0.6;
+
+    let promise = audio.play();
+
+    if(promise !== undefined){
+
+      promise
+      .then(()=>{})
+      .catch(()=>{});
+
+    }
+
+  }
+
+}
 
   document
   .getElementById("intro")
