@@ -592,6 +592,26 @@ function openInvite(){
   .getElementById("intro")
   .classList.add("hide");
 
+  let audio = document.getElementById("bgm");
+
+  audio.volume = 0.6;
+
+  let playPromise = audio.play();
+
+  if(playPromise !== undefined){
+    playPromise
+      .then(()=>{})
+      .catch(err=>{
+        console.log("Autoplay blocked");
+      });
+  }
+
+}
+
+  document
+  .getElementById("intro")
+  .classList.add("hide");
+
   startMusic();
 
 }
@@ -666,9 +686,9 @@ MUSIC
 let audio =
 document.getElementById("bgm");
 
-let started = false;
 
-function startMusic(){
+
+
 
 if(!started){
 
@@ -686,16 +706,6 @@ started = true;
 
 }
 
-["click","touchstart","scroll"]
-.forEach(event=>{
-
-window.addEventListener(
-event,
-startMusic,
-{once:true}
-);
-
-});
 
 function toggleMusic(){
 
