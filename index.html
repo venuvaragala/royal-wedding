@@ -36,9 +36,7 @@ body{
   user-select:none;
 }
 
-/* =========================
-BACKGROUND
-========================= */
+/* BACKGROUND */
 
 .bg{
   position:fixed;
@@ -62,9 +60,7 @@ BACKGROUND
   );
 }
 
-/* =========================
-OPEN SCREEN
-========================= */
+/* INTRO */
 
 .intro{
   position:fixed;
@@ -127,9 +123,7 @@ OPEN SCREEN
   font-size:15px;
 }
 
-/* =========================
-MENU
-========================= */
+/* MENU */
 
 .menu-btn{
   position:fixed;
@@ -196,9 +190,7 @@ MENU
   background:rgba(255,215,0,0.08);
 }
 
-/* =========================
-HERO
-========================= */
+/* HERO */
 
 .hero{
   min-height:100vh;
@@ -269,9 +261,7 @@ HERO
   font-weight:600;
 }
 
-/* =========================
-BUTTONS
-========================= */
+/* BUTTONS */
 
 .actions{
   width:100%;
@@ -301,9 +291,7 @@ BUTTONS
   0 8px 25px rgba(255,215,0,0.25);
 }
 
-/* =========================
-SECTION
-========================= */
+/* SECTION */
 
 .section{
   padding:70px 18px;
@@ -328,9 +316,7 @@ SECTION
   display:block;
 }
 
-/* =========================
-GALLERY
-========================= */
+/* GALLERY */
 
 .gallery{
   display:grid;
@@ -344,55 +330,7 @@ GALLERY
   pointer-events:none;
 }
 
-/* =========================
-MODAL
-========================= */
-
-.modal{
-  position:fixed;
-  inset:0;
-  background:#000;
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:999999;
-}
-
-.modal img{
-  width:92%;
-  border-radius:22px;
-}
-
-/* =========================
-MUSIC BUTTON
-========================= */
-
-.music{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-
-  width:60px;
-  height:60px;
-
-  border-radius:50%;
-
-  background:linear-gradient(135deg,#ffd700,#fff0a5);
-
-  color:#000;
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
-  font-size:24px;
-
-  z-index:999;
-}
-
-/* =========================
-ANIMATIONS
-========================= */
+/* ANIMATIONS */
 
 @keyframes pulse{
   0%{transform:scale(1);}
@@ -405,9 +343,7 @@ ANIMATIONS
   to{transform:scale(1.12);}
 }
 
-/* =========================
-DESKTOP
-========================= */
+/* DESKTOP */
 
 @media(min-width:768px){
 
@@ -453,8 +389,12 @@ DESKTOP
       we invite you to celebrate our wedding.
     </p>
 
-    <button class="open-btn" onclick="openInvite()">
+    <button class="open-btn"
+    ontouchstart="openInvite()"
+    onclick="openInvite()">
+
       Open Invitation 💍
+
     </button>
 
   </div>
@@ -571,19 +511,13 @@ DESKTOP
 </section>
 
 <!-- MUSIC -->
-<audio id="bgm" loop preload="auto">
+<audio id="bgm" preload="auto" loop playsinline webkit-playsinline>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<div class="music" onclick="toggleMusic()">
-  🔊
-</div>
-
 <script>
 
-/* =========================
-OPEN INVITE
-========================= */
+/* OPEN INVITE */
 
 function openInvite(){
 
@@ -595,9 +529,7 @@ function openInvite(){
 
 }
 
-/* =========================
-MENU
-========================= */
+/* MENU */
 
 function toggleMenu(){
 
@@ -607,9 +539,7 @@ function toggleMenu(){
 
 }
 
-/* =========================
-COUNTDOWN
-========================= */
+/* COUNTDOWN */
 
 let target =
 new Date("May 10, 2026 10:25:00").getTime();
@@ -634,9 +564,7 @@ document.getElementById("countdown").innerHTML =
 
 },1000);
 
-/* =========================
-LOCATION
-========================= */
+/* LOCATION */
 
 function openMap(){
 
@@ -646,9 +574,7 @@ window.open(
 
 }
 
-/* =========================
-SHARE
-========================= */
+/* SHARE */
 
 function shareInvite(){
 
@@ -658,9 +584,7 @@ window.open(
 
 }
 
-/* =========================
-MUSIC
-========================= */
+/* MUSIC */
 
 let audio =
 document.getElementById("bgm");
@@ -669,46 +593,37 @@ let started = false;
 
 function startMusic(){
 
-if(!started){
+  if(!started){
 
-audio.volume = 0.6;
+    audio.muted = false;
 
-let promise = audio.play();
+    audio.volume = 0.6;
 
-if(promise !== undefined){
-promise.catch(()=>{});
-}
+    let playPromise = audio.play();
 
-started = true;
+    if(playPromise !== undefined){
 
-}
+      playPromise
+      .then(()=>{
 
-}
+        console.log("Music started");
 
-["click","touchstart","scroll"]
-.forEach(event=>{
+      })
+      .catch(()=>{
 
-window.addEventListener(
-event,
-startMusic,
-{once:true}
-);
+        console.log("Mobile autoplay blocked");
 
-});
+      });
 
-function toggleMusic(){
+    }
 
-if(audio.paused){
-audio.play();
-}else{
-audio.pause();
-}
+    started = true;
+
+  }
 
 }
 
-/* =========================
-SECURITY
-========================= */
+/* SECURITY */
 
 // disable right click
 document.addEventListener(
