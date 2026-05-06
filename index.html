@@ -1,5 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Venu weds Sowmya 💍</title>
+
+<!-- WhatsApp Preview -->
 <meta property="og:title" content="Venu weds Sowmya 💍">
-<meta property="og:description" content="Together with love & blessings">
+<meta property="og:description" content="Together with love & blessings, we invite you to our royal wedding celebration.">
 <meta property="og:image" content="https://venuvaragala.github.io/royal-wedding/preview.jpg">
 <meta property="og:url" content="https://venuvaragala.github.io/royal-wedding/">
 <meta property="og:type" content="website">
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  overflow-x:hidden;
+  color:#fff;
+  background:#000;
+  user-select:none;
+}
+
+/* =========================
+BACKGROUND
+========================= */
+
+.bg{
+  position:fixed;
+  inset:0;
+  background:url("background.jpg") center center/cover no-repeat;
+  z-index:-3;
+  transform:scale(1.05);
+  animation:bgZoom 20s infinite alternate ease-in-out;
+}
+
+.bg::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+  linear-gradient(
+  to bottom,
+  rgba(0,0,0,0.25),
+  rgba(0,0,0,0.65),
+  rgba(0,0,0,0.95)
+  );
+}
+
+/* =========================
+OPEN SCREEN
+========================= */
+
+.intro{
+  position:fixed;
+  inset:0;
+  background:#000;
+  z-index:99999;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  transition:1s;
+}
+
+.intro.hide{
+  opacity:0;
+  visibility:hidden;
+}
+
+.open-box{
+  width:85%;
+  max-width:320px;
+  padding:30px 20px;
+  border-radius:30px;
+
+  background:rgba(255,215,0,0.08);
+  backdrop-filter:blur(10px);
+
+  border:1px solid rgba(255,215,0,0.35);
+
+  text-align:center;
+
+  box-shadow:
+  0 0 25px rgba(255,215,0,0.2);
+
+  animation:pulse 2s infinite;
+}
+
+.open-box h1{
+  font-family:'Cinzel',serif;
+  font-size:28px;
+  color:#ffd700;
+  margin-bottom:12px;
+}
+
+.open-box p{
+  font-size:13px;
+  opacity:0.8;
+  line-height:1.6;
+}
+
+.open-btn{
+  margin-top:22px;
+  padding:13px 24px;
+  border:none;
+  border-radius:50px;
+
+  background:linear-gradient(135deg,#ffd700,#fff1a8);
+
+  color:#000;
+  font-weight:700;
+  font-size:15px;
+}
+
+/* =========================
+MENU
+========================= */
+
+.menu-btn{
+  position:fixed;
+  top:18px;
+  right:18px;
+
+  width:54px;
+  height:54px;
+
+  border-radius:18px;
+
+  background:rgba(255,215,0,0.15);
+  backdrop-filter:blur(10px);
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  z-index:999;
+  border:1px solid rgba(255,215,0,0.25);
+}
+
+.menu-btn span{
+  font-size:26px;
+  color:#ffd700;
+}
+
+.side-menu{
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:280px;
+  height:100vh;
+
+  background:rgba(0,0,0,0.95);
+  backdrop-filter:blur(20px);
+
+  z-index:9999;
+
+  transition:0.5s;
+  padding:28px;
+}
+
+.side-menu.active{
+  right:0;
+}
+
+.side-menu h2{
+  color:#ffd700;
+  margin-bottom:25px;
+  font-family:'Cinzel',serif;
+}
+
+.side-menu a{
+  display:block;
+  margin:14px 0;
+  padding:14px 18px;
+
+  border-radius:14px;
+
+  text-decoration:none;
+  color:#fff;
+
+  background:rgba(255,215,0,0.08);
+}
+
+/* =========================
+HERO
+========================= */
+
+.hero{
+  min-height:100vh;
+  padding:90px 18px 40px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items:center;
+}
+
+.hero-card{
+  width:100%;
+  max-width:420px;
+
+  padding:28px 22px;
+
+  border-radius:32px;
+
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(12px);
+
+  border:1px solid rgba(255,215,0,0.2);
+
+  text-align:center;
+
+  box-shadow:
+  0 15px 50px rgba(0,0,0,0.45);
+}
+
+.couple{
+  font-family:'Cinzel',serif;
+  font-size:44px;
+  line-height:1.2;
+
+  background:linear-gradient(135deg,#ffd700,#fff,#ffd700);
+  -webkit-background-clip:text;
+  color:transparent;
+
+  text-shadow:
+  0 0 18px rgba(255,215,0,0.3);
+}
+
+.tagline{
+  margin-top:12px;
+  letter-spacing:2px;
+  font-size:11px;
+  opacity:0.85;
+}
+
+.line{
+  width:90px;
+  height:2px;
+  background:#ffd700;
+  margin:18px auto;
+}
+
+.details{
+  margin-top:10px;
+  line-height:2;
+  font-size:15px;
+}
+
+.countdown{
+  margin-top:20px;
+  font-size:16px;
+  color:#ffd700;
+  font-weight:600;
+}
+
+/* =========================
+BUTTONS
+========================= */
+
+.actions{
+  width:100%;
+  max-width:420px;
+
+  display:flex;
+  gap:12px;
+
+  margin-top:18px;
+}
+
+.action-btn{
+  flex:1;
+  padding:15px;
+
+  border:none;
+  border-radius:18px;
+
+  font-size:15px;
+  font-weight:600;
+
+  color:#000;
+
+  background:linear-gradient(135deg,#ffd700,#fff0a5);
+
+  box-shadow:
+  0 8px 25px rgba(255,215,0,0.25);
+}
+
+/* =========================
+SECTION
+========================= */
+
+.section{
+  padding:70px 18px;
+}
+
+.section-title{
+  text-align:center;
+  font-family:'Cinzel',serif;
+  font-size:32px;
+  color:#ffd700;
+  margin-bottom:30px;
+}
+
+.video-box{
+  border-radius:30px;
+  overflow:hidden;
+  box-shadow:0 15px 40px rgba(0,0,0,0.5);
+}
+
+.video-box video{
+  width:100%;
+  display:block;
+}
+
+/* =========================
+GALLERY
+========================= */
+
+.gallery{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.gallery img{
+  width:100%;
+  border-radius:22px;
+  pointer-events:none;
+}
+
+/* =========================
+MODAL
+========================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999999;
+}
+
+.modal img{
+  width:92%;
+  border-radius:22px;
+}
+
+/* =========================
+MUSIC BUTTON
+========================= */
+
+.music{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+
+  width:60px;
+  height:60px;
+
+  border-radius:50%;
+
+  background:linear-gradient(135deg,#ffd700,#fff0a5);
+
+  color:#000;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  font-size:24px;
+
+  z-index:999;
+}
+
+/* =========================
+ANIMATIONS
+========================= */
+
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.03);}
+  100%{transform:scale(1);}
+}
+
+@keyframes bgZoom{
+  from{transform:scale(1.05);}
+  to{transform:scale(1.12);}
+}
+
+/* =========================
+DESKTOP
+========================= */
+
+@media(min-width:768px){
+
+.hero{
+  padding-top:120px;
+}
+
+.couple{
+  font-size:58px;
+}
+
+.hero-card{
+  max-width:520px;
+}
+
+.actions{
+  max-width:520px;
+}
+
+.gallery{
+  grid-template-columns:repeat(4,1fr);
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND -->
+<div class="bg"></div>
+
+<!-- INTRO -->
+<div class="intro" id="intro">
+
+  <div class="open-box">
+
+    <h1>Venu weds Sowmya</h1>
+
+    <p>
+      Together with love & blessings,<br>
+      we invite you to celebrate our wedding.
+    </p>
+
+    <button class="open-btn" onclick="openInvite()">
+      Open Invitation 💍
+    </button>
+
+  </div>
+
+</div>
+
+<!-- MENU -->
+<div class="menu-btn" onclick="toggleMenu()">
+  <span>☰</span>
+</div>
+
+<div class="side-menu" id="menu">
+
+  <h2>Wedding Events</h2>
+
+  <a href="#haldi">🌼 Haldi</a>
+  <a href="#gallery">📸 Gallery</a>
+  <a href="#reception">✨ Reception</a>
+
+</div>
+
+<!-- HERO -->
+<section class="hero">
+
+  <div class="hero-card">
+
+    <div class="couple">
+      Venu<br>weds<br>Sowmya
+    </div>
+
+    <div class="tagline">
+      TOGETHER WITH LOVE & BLESSINGS
+    </div>
+
+    <div class="line"></div>
+
+    <div class="details">
+      📍 Thotapally<br>
+      🗓 Sunday, May 10, 2026<br>
+      ⏰ Muhurtham: 10:25 AM<br>
+      ✨ Wedding Ceremony
+    </div>
+
+    <div class="countdown" id="countdown">
+      Loading...
+    </div>
+
+  </div>
+
+  <div class="actions">
+
+    <button class="action-btn" onclick="openMap()">
+      📍 Location
+    </button>
+
+    <button class="action-btn" onclick="shareInvite()">
+      📤 Share
+    </button>
+
+  </div>
+
+</section>
+
+<!-- HALDI -->
+<section class="section" id="haldi">
+
+  <h2 class="section-title">
+    Haldi Ceremony
+  </h2>
+
+  <div class="video-box">
+    <video autoplay muted loop playsinline>
+      <source src="haldi.mp4" type="video/mp4">
+    </video>
+  </div>
+
+</section>
+
+<!-- GALLERY -->
+<section class="section" id="gallery">
+
+  <h2 class="section-title">
+    Wedding Gallery
+  </h2>
+
+  <div class="gallery">
+
+    <img src="1.jpg">
+    <img src="2.jpg">
+    <img src="3.jpg">
+    <img src="4.jpg">
+
+  </div>
+
+</section>
+
+<!-- RECEPTION -->
+<section class="section" id="reception">
+
+  <h2 class="section-title">
+    Reception Night ✨
+  </h2>
+
+  <div class="hero-card">
+
+    <div class="details">
+      🕯 Grand Reception Celebration<br>
+      🎶 Dinner & Music Night<br>
+      👨‍👩‍👧‍👦 Family & Friends Gathering
+    </div>
+
+  </div>
+
+</section>
+
+<!-- MUSIC -->
+<audio id="bgm" loop preload="auto">
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music" onclick="toggleMusic()">
+  🔊
+</div>
+
+<script>
+
+/* =========================
+OPEN INVITE
+========================= */
+
+function openInvite(){
+
+  document
+  .getElementById("intro")
+  .classList.add("hide");
+
+  startMusic();
+
+}
+
+/* =========================
+MENU
+========================= */
+
+function toggleMenu(){
+
+  document
+  .getElementById("menu")
+  .classList.toggle("active");
+
+}
+
+/* =========================
+COUNTDOWN
+========================= */
+
+let target =
+new Date("May 10, 2026 10:25:00").getTime();
+
+setInterval(()=>{
+
+let now = new Date().getTime();
+
+let distance = target - now;
+
+let days =
+Math.floor(distance/(1000*60*60*24));
+
+let hrs =
+Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+
+let mins =
+Math.floor((distance%(1000*60*60))/(1000*60));
+
+document.getElementById("countdown").innerHTML =
+`⏳ ${days} Days ${hrs} Hours ${mins} Minutes Left`;
+
+},1000);
+
+/* =========================
+LOCATION
+========================= */
+
+function openMap(){
+
+window.open(
+"https://maps.app.goo.gl/e5nKVW6cyCUn4xvr6"
+);
+
+}
+
+/* =========================
+SHARE
+========================= */
+
+function shareInvite(){
+
+window.open(
+`https://wa.me/?text=${encodeURIComponent(window.location.href)}`
+);
+
+}
+
+/* =========================
+MUSIC
+========================= */
+
+let audio =
+document.getElementById("bgm");
+
+let started = false;
+
+function startMusic(){
+
+if(!started){
+
+audio.volume = 0.6;
+
+let promise = audio.play();
+
+if(promise !== undefined){
+promise.catch(()=>{});
+}
+
+started = true;
+
+}
+
+}
+
+["click","touchstart","scroll"]
+.forEach(event=>{
+
+window.addEventListener(
+event,
+startMusic,
+{once:true}
+);
+
+});
+
+function toggleMusic(){
+
+if(audio.paused){
+audio.play();
+}else{
+audio.pause();
+}
+
+}
+
+/* =========================
+SECURITY
+========================= */
+
+// disable right click
+document.addEventListener(
+"contextmenu",
+e=>e.preventDefault()
+);
+
+// disable copy
+document.addEventListener(
+"copy",
+e=>e.preventDefault()
+);
+
+// disable select
+document.addEventListener(
+"selectstart",
+e=>e.preventDefault()
+);
+
+// disable drag
+document.addEventListener(
+"dragstart",
+e=>e.preventDefault()
+);
+
+// disable keys
+document.addEventListener(
+"keydown",
+function(e){
+
+if(
+e.ctrlKey &&
+['u','c','s','a'].includes(
+e.key.toLowerCase()
+)
+){
+e.preventDefault();
+}
+
+if(e.key==="F12"){
+e.preventDefault();
+}
+
+}
+);
+
+</script>
+
+</body>
+</html>
