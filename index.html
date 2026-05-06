@@ -8,11 +8,10 @@
 
 <!-- WhatsApp Preview -->
 <meta property="og:title" content="Venu weds Sowmya 💍">
-<meta property="og:description" content="Together with love & blessings, we invite you to our wedding celebration.">
+<meta property="og:description" content="Together with love & blessings, we invite you to our royal wedding celebration.">
 <meta property="og:image" content="https://venuvaragala.github.io/royal-wedding/preview.jpg">
 <meta property="og:url" content="https://venuvaragala.github.io/royal-wedding/">
 <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
@@ -592,26 +591,6 @@ function openInvite(){
   .getElementById("intro")
   .classList.add("hide");
 
-  let audio = document.getElementById("bgm");
-
-  audio.volume = 0.6;
-
-  let playPromise = audio.play();
-
-  if(playPromise !== undefined){
-    playPromise
-      .then(()=>{})
-      .catch(err=>{
-        console.log("Autoplay blocked");
-      });
-  }
-
-}
-
-  document
-  .getElementById("intro")
-  .classList.add("hide");
-
   startMusic();
 
 }
@@ -686,9 +665,9 @@ MUSIC
 let audio =
 document.getElementById("bgm");
 
+let started = false;
 
-
-
+function startMusic(){
 
 if(!started){
 
@@ -706,6 +685,16 @@ started = true;
 
 }
 
+["click","touchstart","scroll"]
+.forEach(event=>{
+
+window.addEventListener(
+event,
+startMusic,
+{once:true}
+);
+
+});
 
 function toggleMusic(){
 
