@@ -8,11 +8,10 @@
 
 <!-- WhatsApp Preview -->
 <meta property="og:title" content="Venu weds Sowmya 💍">
-<meta property="og:description" content="Together with love & blessings, we invite you to our wedding celebration.">
+<meta property="og:description" content="Together with love & blessings, we invite you to our royal wedding celebration.">
 <meta property="og:image" content="https://venuvaragala.github.io/royal-wedding/preview.jpg">
 <meta property="og:url" content="https://venuvaragala.github.io/royal-wedding/">
 <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
@@ -454,7 +453,7 @@ DESKTOP
       we invite you to celebrate our wedding.
     </p>
 
-    <button class="open-btn" ontouchstart="openInvite()" onclick="openInvite()">
+    <button class="open-btn" onclick="openInvite()">
       Open Invitation 💍
     </button>
 
@@ -579,9 +578,7 @@ DESKTOP
 <div class="music" onclick="toggleMusic()">
   🔊
 </div>
-<audio id="bgm" preload="auto" loop playsinline>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
+
 <script>
 
 /* =========================
@@ -589,65 +586,6 @@ OPEN INVITE
 ========================= */
 
 function openInvite(){
- // intro hide
-  document
-    .getElementById("intro")
-    .classList.add("hide");
-
-  // audio
-  let audio = document.getElementById("bgm");
-
-  if(audio){
-
-    audio.muted = false;
-
-    audio.volume = 0.6;
-
-    audio.play()
-    .then(()=>{
-
-      console.log("music started");
-
-    })
-    .catch(err=>{
-
-      console.log("mobile blocked autoplay");
-
-      .catch(()=>{
-
-      alert("Tap once again to start music 🎵");
-
-    });
-
-  }
-
-}
-
-  // hide intro
-  document
-    .getElementById("intro")
-    .classList.add("hide");
-
-  // audio safe play
-  let audio = document.getElementById("bgm");
-
-  if(audio){
-
-    audio.volume = 0.6;
-
-    let promise = audio.play();
-
-    if(promise !== undefined){
-
-      promise
-      .then(()=>{})
-      .catch(()=>{});
-
-    }
-
-  }
-
-}
 
   document
   .getElementById("intro")
@@ -727,6 +665,10 @@ MUSIC
 let audio =
 document.getElementById("bgm");
 
+let started = false;
+
+function startMusic(){
+
 if(!started){
 
 audio.volume = 0.6;
@@ -742,6 +684,9 @@ started = true;
 }
 
 }
+
+["click","touchstart","scroll"]
+.forEach(event=>{
 
 window.addEventListener(
 event,
