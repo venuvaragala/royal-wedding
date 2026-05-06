@@ -453,9 +453,13 @@ DESKTOP
       we invite you to celebrate our wedding.
     </p>
 
-    <button class="open-btn" ontouchstart="openInvite()" onclick="openInvite()">
-      Open Invitation 💍
-    </button>
+  <button class="open-btn"
+  ontouchstart="document.getElementById('bgm').play(); openInvite();"
+  onclick="document.getElementById('bgm').play(); openInvite();">
+
+Open Invitation 💍
+
+</button>
 
   </div>
 
@@ -574,9 +578,6 @@ DESKTOP
 <audio id="bgm" preload="auto" loop playsinline webkit-playsinline>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
-<div class="music" onclick="toggleMusic()">
-  🔊
-</div>
 
 <script>
 
@@ -679,14 +680,6 @@ startMusic,
 });
 
 function toggleMusic(){
-
-if(audio.paused){
-audio.play();
-}else{
-audio.pause();
-}
-
-}
 
 /* =========================
 SECURITY
