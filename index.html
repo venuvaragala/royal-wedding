@@ -8,11 +8,12 @@
 
 <!-- WhatsApp Preview -->
 <meta property="og:title" content="Venu weds Sowmya 💍">
-<meta property="og:description" content="Together with love & blessings, we invite you to our royal wedding celebration.">
+<meta property="og:description" content="Together with love & blessings, we invite you to our wedding celebration.">
 <meta property="og:image" content="https://venuvaragala.github.io/royal-wedding/preview.jpg">
 <meta property="og:url" content="https://venuvaragala.github.io/royal-wedding/">
 <meta property="og:type" content="website">
-
+<meta name="twitter:card" content="summary_large_image">
+  
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
@@ -453,14 +454,13 @@ DESKTOP
       we invite you to celebrate our wedding.
     </p>
 
-  <button class="open-btn"
-  ontouchstart="document.getElementById('bgm').play(); openInvite();"
-  onclick="document.getElementById('bgm').play(); openInvite();">
+    <button class="open-btn"
+ontouchstart="openInvite()"
+onclick="openInvite()">
 
 Open Invitation 💍
 
 </button>
-
   </div>
 
 </div>
@@ -575,9 +575,13 @@ Open Invitation 💍
 </section>
 
 <!-- MUSIC -->
-<audio id="bgm" preload="auto" loop playsinline webkit-playsinline>
+<audio id="bgm" loop preload="auto">
   <source src="music.mp3" type="audio/mpeg">
 </audio>
+
+<div class="music" onclick="toggleMusic()">
+  🔊
+</div>
 
 <script>
 
@@ -599,8 +603,33 @@ function openInvite(){
 MENU
 ========================= */
 
-function toggleMenu(){
 
+  // hide intro first
+  document
+    .getElementById("intro")
+    .classList.add("hide");
+
+  // play music after hide
+  let audio =
+  document.getElementById("bgm");
+
+  if(audio){
+
+    audio.volume = 0.6;
+
+    let playPromise = audio.play();
+
+    if(playPromise !== undefined){
+
+      playPromise
+      .then(()=>{})
+      .catch(()=>{});
+
+    }
+
+  }
+
+}
   document
   .getElementById("menu")
   .classList.toggle("active");
@@ -667,6 +696,23 @@ document.getElementById("bgm");
 
 let started = false;
 
+function startMusic(){
+
+if(!started){
+
+audio.volume = 0.6;
+
+let promise = audio.play();
+
+if(promise !== undefined){
+promise.catch(()=>{});
+}
+
+started = true;
+
+}
+
+}
 
 ["click","touchstart","scroll"]
 .forEach(event=>{
@@ -680,6 +726,14 @@ startMusic,
 });
 
 function toggleMusic(){
+
+if(audio.paused){
+audio.play();
+}else{
+audio.pause();
+}
+
+}
 
 /* =========================
 SECURITY
